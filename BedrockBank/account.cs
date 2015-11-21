@@ -9,7 +9,7 @@ namespace BedrockBank
     /// <summary>
     /// this class provides defination for a Bedrock account
     /// </summary>
-    class account
+    class Account
     {
         #region Properties
         /// <summary>
@@ -26,8 +26,25 @@ namespace BedrockBank
         public decimal Balance { get; set; }
         #endregion
 
-        #region
-        
+        #region Methods
+        /// <summary>
+        /// deposit money into your account
+        /// </summary>
+        /// <param name="amount">Money to deposit</param>
+        /// <returns>new balance</returns>
+        public decimal Deposit(decimal amount)
+        {
+            //Balance = Balance + amount;
+            Balance += amount;
+            return Balance;
+                   
+        }    
+        public decimal Withdraw(decimal amount)
+        {
+            Balance -= amount;
+            return Balance;
+
+        }
         #endregion
     }
 }
