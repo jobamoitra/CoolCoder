@@ -12,13 +12,11 @@ namespace BedrockBank
         {
             //Create an instance of an Account == object
             var account = new Account();
-
             account.AccountNumber = 123;
             account.Name = "joba Checking";
             account.Deposit(500);
-            Console.WriteLine(account.Balance);
-
-
+            Console.WriteLine(account.Balance);   
+                   
         }
     }
 }
