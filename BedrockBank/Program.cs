@@ -10,21 +10,27 @@ namespace BedrockBank
     {
         static void Main(string[] args)
         {
-            //Create an instance of an Account == object
-            var account = new Account();
-            //account.AccountNumber = 123;
-            account.Name = "joba's Checking";
-            //account.Balance = 100000000;
-            account.Deposit(500);
-            //Console.WriteLine(account.Balance);   
+            var account = BankFactory.CreateAccount("Joba's Checcking", 500);
+            ////Create an instance of an Account == object
+            //var account = new Account();
+            ////account.AccountNumber = 123;
+            //account.Name = "Joba's Checking";
+            ////account.Balance = 100000000;
+            //account.Deposit(500);
+            ////Console.WriteLine(account.Balance);   
             Console.WriteLine(
-                "Name: {0}, Account Number: {1}, Account Balance: {2}",
+                "Name: {0}, Account Number: {1}, Account Balance: {2:c}",
                 account.Name, account.AccountNumber, account.Balance
                 );
-            var savingsAccount = new Account();
-            //Account savingsAccount = new Account(); //this is the old style
-            savingsAccount.Name = "joba's saving";
-            savingsAccount.Deposit(10);
+
+            //create SavingsAccount
+            var savingsAccount = BankFactory.CreateAccount("Joba's Savings", 10);
+            //var savingsAccount = new Account();
+            ////Account savingsAccount = new Account(); //this is the old style
+            //savingsAccount.Name = "Joba's savings";
+            //savingsAccount.Deposit(10);
+
+            //Exception handling
             try
             {
                 savingsAccount.Withdraw(100);
@@ -39,7 +45,7 @@ namespace BedrockBank
                 Console.WriteLine("Something went wrong");
             }
             Console.WriteLine(
-                "Name: {0}, Account Number: {1}, Account Balance: {2}",
+                "Name: {0}, Account Number: {1}, Account Balance: {2:c}",
                 savingsAccount.Name, savingsAccount.AccountNumber, savingsAccount.Balance
                 );
         }

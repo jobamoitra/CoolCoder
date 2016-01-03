@@ -9,13 +9,11 @@ namespace BedrockBank
     /// <summary>
     /// this class provides defination for a Bedrock account
     /// </summary>
-    class Account
+    public class Account
     {
         #region Variables
         /// <summary>
-        /// Shared memory for storing the
-        /// last account number 
-        /// and initialize it to 0
+        /// Shared memory for storing the last account number and initialize it to 0
         /// </summary>
         private static int lastAccountNumber = 0;
 
@@ -35,6 +33,10 @@ namespace BedrockBank
         /// </summary>
         public decimal Balance { get;
             private set; }
+
+        public int SSN { get; set; }
+
+
         #endregion
 
         #region Methods
@@ -75,15 +77,27 @@ namespace BedrockBank
         /// <summary>
         /// default constructor - no parameters
         /// </summary>
+       
+        /// Default Constructors
         public Account()
         {
             //lastAccountNumber = lastAccountNumber + 1;
-            //AccountNumber = ++lastAccountNumber; //increment lastAccountNumber and then assign to AccountNumber
+            AccountNumber = ++lastAccountNumber; //increment lastAccountNumber and then assign to AccountNumber
             //AccountNumber = lastAccountNumber++; //assign to Accountnumber and then increment lastAccountNumber
-            lastAccountNumber++; //increment the lastAccountNumber
-            AccountNumber = lastAccountNumber; //assign the incremented value to AcccountNumber
+            //other ways of doing the same
+            //lastAccountNumber++; //increment the lastAccountNumber and then 
+            //AccountNumber = lastAccountNumber; //assign the incremented value to AcccountNumber
         }
 
+        public Account (string name) : this()
+        {
+            this.Name = name;
+        }
+
+        public Account (string name, decimal amount) : this (name)
+        {
+            this.Deposit(amount);
+        }
         #endregion
     }
 }
