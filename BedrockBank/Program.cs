@@ -10,6 +10,8 @@ namespace BedrockBank
     {
         static void Main(string[] args)
         {
+            #region code from previous classes (towards end of 12/6) commented out
+            /*
             var account = BankFactory.CreateAccount("Joba's Checcking", 500);
             ////Create an instance of an Account == object
             //var account = new Account();
@@ -48,6 +50,12 @@ namespace BedrockBank
                 "Name: {0}, Account Number: {1}, Account Balance: {2:c}",
                 savingsAccount.Name, savingsAccount.AccountNumber, savingsAccount.Balance
                 );
+            */
+            #endregion
+            Console.WriteLine("*** Welcome to Bedrock Bank ***");
+            Console.Write("Please login with SSN: ");
+            var ssn = Console.ReadLine();
+            int.TryParse(ssn,)
         }
     }
 }
