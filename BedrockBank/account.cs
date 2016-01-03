@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace BedrockBank
 {
+    public enum AccountType
+    {
+        Checking,
+        Savings,
+        CD
+    }
     /// <summary>
-    /// this class provides defination for a Bedrock account
-    /// </summary>
+     /// this class provides defination for a Bedrock account
+     /// </summary>
+
     public class Account
     {
         #region Variables
@@ -36,7 +43,7 @@ namespace BedrockBank
 
         public int SSN { get; set; }
 
-
+        public AccountType TypeOfAccount { get; set; }
         #endregion
 
         #region Methods
@@ -81,12 +88,7 @@ namespace BedrockBank
         /// Default Constructors
         public Account()
         {
-            //lastAccountNumber = lastAccountNumber + 1;
             AccountNumber = ++lastAccountNumber; //increment lastAccountNumber and then assign to AccountNumber
-            //AccountNumber = lastAccountNumber++; //assign to Accountnumber and then increment lastAccountNumber
-            //other ways of doing the same
-            //lastAccountNumber++; //increment the lastAccountNumber and then 
-            //AccountNumber = lastAccountNumber; //assign the incremented value to AcccountNumber
         }
 
         public Account (string name) : this()

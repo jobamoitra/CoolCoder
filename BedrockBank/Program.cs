@@ -55,7 +55,15 @@ namespace BedrockBank
             Console.WriteLine("*** Welcome to Bedrock Bank ***");
             Console.Write("Please login with SSN: ");
             var ssn = Console.ReadLine();
-            int.TryParse(ssn,)
+            int convertedSSN;
+            if (int.TryParse(ssn, out convertedSSN) == true)
+            {
+                var accounts = BankFactory.GetAllAccountsBySSN(convertedSSN);
+                if (accounts == null)
+                {
+                    Console.WriteLine("No Accounts");
+                }
+            }
         }
     }
 }
