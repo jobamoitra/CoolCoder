@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,13 +19,7 @@ namespace BedrockBank
 
     public class Account
     {
-        #region Variables
-        /// <summary>
-        /// Shared memory for storing the last account number and initialize it to 0
-        /// </summary>
-        private static int lastAccountNumber = 0;
 
-        #endregion
         #region Properties
         /// <summary>
         /// Name of the account holder
@@ -33,6 +28,7 @@ namespace BedrockBank
         /// <summary>
         /// Account number
         /// </summary>
+        [Key]
         public int AccountNumber { get;
             private set; }
         /// <summary>
@@ -88,7 +84,6 @@ namespace BedrockBank
         /// Default Constructors
         public Account()
         {
-            AccountNumber = ++lastAccountNumber; //increment lastAccountNumber and then assign to AccountNumber
         }
 
         public Account (string name) : this()

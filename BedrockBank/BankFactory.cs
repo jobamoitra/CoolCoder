@@ -10,14 +10,19 @@ namespace BedrockBank
     public static class BankFactory
     {
 
-        private static List<Account> accounts = new List<Account>();
+        //private static List<Account> accounts = new List<Account>();
 
         public static Account CreateAccount(string name, int ssn)
         {
-            var account = new Account(name);
-            account.SSN = ssn;
-            accounts.Add(account);
-            return account;
+            using (var db = new BankModel())
+            {
+                var account = new Account(name);
+                account.SSN = ssn;
+                //accounts.Add(account);
+                db.Accounts.Add(account);
+                db.SaveChanges();
+                return account;
+            }
         }
 
         public static Account CreateAccount(string name, int ssn, decimal amount, AccountType accountType)
@@ -25,16 +30,37 @@ namespace BedrockBank
             //var account = new Account();
             //account.Name = name;
             //account.Deposit(amount);
-            var account = new Account(name, amount);
-            account.SSN = ssn;
-            account.TypeOfAccount = accountType;
-            accounts.Add(account);
-            return account;
+            using (var db = new BankModel())
+            {
+                var account = new Account(name, amount);
+                account.SSN = ssn;
+                account.TypeOfAccount = accountType;
+                // accounts.Add(account);
+                db.Accounts.Add(account);
+                db.SaveChanges();
+                return account;
+            }
         }
 
         public static IEnumerable<Account> GetAllAccountsBySSN(int ssn)
         {
-            return accounts.Where(a => a.SSN == ssn);
+            var db = new BankModel();
+            
+            //return accounts.Where(a => a.SSN == ssn);
+            return db.Accounts.Where(a => a.SSN == ssn);
+            
+        }
+        public static void Deposit(int accountNumber, decimal amount)
+        {
+            using (var db = new BankModel())
+            {
+                var account = db.Accounts.Where(a => a.AccountNumber == accountNumber).First();
+                var original = account;
+                account.Deposit(amount);
+                db.Entry(original).CurrentValues.SetValues(account);
+                db.SaveChanges();
+            }
+
         }
     }
 }

@@ -59,9 +59,18 @@ namespace BedrockBank
             if (int.TryParse(ssn, out convertedSSN) == true)
             {
                 var accounts = BankFactory.GetAllAccountsBySSN(convertedSSN);
-                if (accounts == null)
+                if (accounts.Count() == 0)
                 {
-                    Console.WriteLine("No Accounts");
+                    Console.WriteLine("No Accounts found for the ssn. Creating one ");
+                    var account = BankFactory.CreateAccount("Dummy", convertedSSN);
+                    BankFactory.Deposit(account.AccountNumber, 100);
+                }
+                else
+                {
+                    foreach (var account in accounts)
+                    {
+                        Console.WriteLine("Account Number: {0}, Balance: {1:c}", account.AccountNumber, account.Balance);
+                    }
                 }
             }
         }
